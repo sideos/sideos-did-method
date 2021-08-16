@@ -33,7 +33,7 @@ sideos DIDs are identifiable by `did:sideos` method-name and conform to the [Gen
 ### Syntax
 
 did                = "did:" method-name ":" method-specific-id\
-method-name        = "sideos:"\
+method-name        = "sideos"\
 method-specific-id = [ version ":" ] 36\*36base58-char\
 version            = v 3\*3(lower-char / DIGIT)\
 base58-char        = ALPHA / DIGIT ; A-Z / a-z / 0-9\
