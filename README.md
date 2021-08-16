@@ -32,7 +32,7 @@ sideos DIDs are identifiable by `did:sideos` method-name and conform to the [Gen
 
 ### Syntax
 
-did                = "did:" method-name ":" method-specific-id
+did                = "did:" method-name ":" method-specific-id\
 method-name        = "sideos:"  
 method-specific-id = [ version ":" ] 36*36base58-char
 version            = v 3*3(lower-char / DIGIT)
@@ -88,6 +88,14 @@ Option 2 is to perform a deletion event and delete or deactivate access to the d
 
 ## Key Management
 
+### Key Recovery 
+
+The keys are generated within the premise of the Identity Holder or on its behalf. That implies that recovery of key material is subject of business layer and not in the scope of this document. 
+
+### Key Revocation
+
+Expired or invalid DIDs can be identified when created and registered on a public ledger. The DEACTIVATE operation applies. Only the Identity Holder can grant permissions to perform an DEACTIVATE operation. 
+
 ## Privacy and Security Considerations
 
 ### Privacy
@@ -103,6 +111,8 @@ Security requires multiple layers of defense. The software implementation of the
 Cryptographic weaknesses may occure if new technologies are able to break through the protection layer or conceptual shortcuts in the cryptographic algorithms are discovered. The sideos DID method is using a versioning system to be able to migrate to updates of the underlying cryptographic primitives. 
 
 DID documents may be tempared with if the storage of the DID document has certain vulnerabilities with respect to the access permissions or integrity protection. It is part of the defense strategy to protect DID Document on the storage and transmission layer. 
+
+If the Identity Holder looses control over the secret keys there may be unauthorized changes to the DID Document via the UPDATE operation or a key revocation via the DEACTIVATION operation is not possible inthe case the keys are lost or destroyed. 
 
 
 
