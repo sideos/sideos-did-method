@@ -48,6 +48,8 @@ The method-specific-id component is created as the following:
 4. BLAKE2 hash of the public key from the PKCS8 with a length of 160 bits
 3. base58 encode the hash prefixed with 3 bytes of the crypto marker
 
+The DID created is globally unique. 
+
 ## CRUD Operations
 
 The sideos DID method supports the CRUD lifecycle of a DID providing functionalities to create, resolve, update and deactivate a DID.
@@ -58,9 +60,12 @@ sideos DIDs are registered on a ledger which publically reacheable and identifie
 
 Creating a DID: 
 
-1. Create a DID document
+1. Presuming a DID document
 2. Register the DID on the ledger, e.g. through a smart contract or other means of mapping the DID to the DID Document
 3. Create off-chain DID document updates if required
+
+authorization:
+authenticity of the response:
 
 ### RESOLVE (READ)
 
@@ -100,7 +105,9 @@ Expired or invalid DIDs can be identified when created and registered on a publi
 
 ### Privacy
 
-As sideos distingueshes private and public DIDs a general privacy decision is made at the time of creating a DID. Private DIDs are following the `did:key` [method](https://w3c-ccg.github.io/did-method-key/) and not discussed here. Public DIDs are per definition publically reachable and stored on a public ledger. The DID Document can be resolved by anyone w/o restrictions. As this is the purpose of a public DID any user or business requiring a public DID should be aware of that fact. 
+As sideos distingueshes private and public DIDs a general privacy decision is made at the time of creating a DID. Private DIDs are following the `did:key` [method](https://w3c-ccg.github.io/did-method-key/) and are not discussed here. 
+
+Public DIDs are per definition publically reachable and stored on a public ledger. The DID Document can be resolved by anyone w/o restrictions. As this is the purpose of a public DID any user or business requiring a public DID should be aware of that fact. 
 
 The Verifiable Credentials managed by the Identity Holder of a public DID are not necessarely stored on the public ledger. Still, the Identity Holder should be aware that survillance may be possible tracking the DID through captured transactions. 
 
