@@ -5,7 +5,7 @@ v0.1, Marcus Nasarek, sideos GmbH
 
 sideos is a service middleware providing SSI services to manage DIDs and Verifiable Credentials. The goal is to ensure interoperability between multiple SSI technologies and improve the privacy and efficiency of SSI protocols. 
 
-sideos supports private and public DIDs depending on the privacy requirements of a specific use case. For a private DID we are using the `did:key` method which is described [here](https://w3c-ccg.github.io/did-method-key/).
+sideos supports private and public DIDs depending on the privacy requirements of a specific use case. For a private DID we are using the `did:key` method which is described [here](https://w3c-ccg.github.io/did-method-key/). 
 
 For the public DIDs we are using our `did:sideos` method described in the sections below.
 
@@ -32,6 +32,8 @@ sideos DIDs are identifiable by `did:sideos` method-name and conform to the [Gen
 
 ### Syntax
 
+Using the ABNF rules for definition:
+
 did                = "did:" method-name ":" method-specific-id\
 method-name        = "sideos"\
 method-specific-id = [ version ":" ] 36\*36base58-char\
@@ -43,10 +45,12 @@ v                  = "v"
 ### DID Creation
 
 The method-specific-id component is created as the following:
-1. generate 256 random bits and a 3 byte crypto marker
-2. create a Ed25519 key pair as a PKCS8 
-4. BLAKE2 hash of the public key from the PKCS8 with a length of 160 bits
-3. base58 encode the hash prefixed with 3 bytes of the crypto marker
+1. generate 256 random bits 
+2. create a key pair from the secp256k1 elliptical curve
+4. BLAKE2 hash of the public key from the SPKI structure in a DER format with a length of 256 bits
+3. base58 encode the hash
+
+The method-specific-id is used to create the DID following the syntax above. 
 
 The DID created is globally unique. 
 
@@ -64,8 +68,6 @@ Creating a DID:
 2. Register the DID on the ledger, e.g. through a smart contract or other means of mapping the DID to the DID Document
 3. Create off-chain DID document updates if required
 
-authorization:
-authenticity of the response:
 
 ### RESOLVE (READ)
 
@@ -109,7 +111,41 @@ As sideos distingueshes private and public DIDs a general privacy decision is ma
 
 Public DIDs are per definition publically reachable and stored on a public ledger. The DID Document can be resolved by anyone w/o restrictions. As this is the purpose of a public DID any user or business requiring a public DID should be aware of that fact. 
 
+#### survillance
+
 The Verifiable Credentials managed by the Identity Holder of a public DID are not necessarely stored on the public ledger. Still, the Identity Holder should be aware that survillance may be possible tracking the DID through captured transactions. 
+
+#### stored data compromise
+
+Data stored on a public ledger may be compromised. sideos supports only ledgers with inherent integrety protection, e.g. blockchains or permissioned distributed ledgers. The integrety protection may fail, so we are utilizing open source ledgers which are supported actively by big community.
+
+#### unsolicited traffic
+
+The protection against unsolicited traffic or denial-of-service messages are subject to the infrastructure layer and not scope of the method-specific privacy considerations.
+
+#### misattribution
+
+The interaction protocolls where the sideos DIDs are used are protected on multiple layers against misattribution and account-take-over. On an identity layer SSI ensures the authenticity of datagrams, whereas the interaction layer, e.g. within a mobile phone's environment or on cloud agents acting on behalf of a user are subject of the environmental security layer.
+
+#### correlation
+
+The correlation of data captured during the CRUD operations of a sideos DID transaction or during related SSI-based interactions may lead to insights affecting the privacy. Although the communication channel is encrypted the parties involved in the communication may try to correlate data elements to other information available. The correlation is adressed in the way a sideos presentation is created by processing only data relevant in an interaction. No additional data is involved, not in plain nor encrypted or hashed.  
+
+#### identification
+
+The topic identification as addressed in the section 5.2.2 of the [RFC6973](https://datatracker.ietf.org/doc/html/rfc6973#section-5.2.2) is what SSI is about. The inherent charateristics of the technology ensure that the identity of interacting individuals can be validated. The natural person or physical object to be identified by SSI credentials have to be linked on the layer above SSI and out of scope of this document.
+
+#### secondary use
+
+The secondary use of the information contained in a Verifiable Credential provided via SSI can not be excluded. Data fields from a Verifiable Credential presented as a JWT can be extracted as plain data records and be used elsewhere. The data records of a Verifiable Credential are usually not encrypted. The values of a data field may be protected by ecnryption which implies that an additional permission layer and key management protocol is required to ensure confidentiality. 
+
+#### disclosure
+
+The structure, naming convention and number of data fields reveal information that allows other parties receiving DIDs and Verifiable Credentials to make certain conclusions. The sideos method creates presentations in a way that it implemenents the need-to-know principle. Only data elements which are required for the respective purpose are captured for the specifc identity presentation. 
+
+#### exclusion
+
+The nature of SSI enforces the involvment of the Identity Holder into the handling and management of its data. Specifically, the focus of SSI is the secure management of data describing the context of an identity. This said, the sideos DID methods allow the Identity Holder to be involved in the management of identity data in the context of SSI protocols.
 
 ### Security
 
