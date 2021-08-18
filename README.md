@@ -45,6 +45,7 @@ v                  = "v"
 ### DID Creation
 
 The method-specific-id component is created as the following:
+
 1. generate 256 random bits 
 2. create a key pair from the secp256k1 elliptic curve
 4. BLAKE2 hash of the public key from the SPKI structure in a DER format with a length of 256 bits
@@ -53,6 +54,10 @@ The method-specific-id component is created as the following:
 The method-specific-id is used to create the DID following the syntax above. 
 
 The DID created is globally unique. 
+
+### DID Documents
+
+sideos DID documents follow the [DID Core Specification](https://www.w3.org/TR/did-core/#abstract) utlizing the JSON-LD format. 
 
 ## CRUD Operations
 
