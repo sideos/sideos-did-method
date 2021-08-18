@@ -138,7 +138,7 @@ The protection against unsolicited traffic or denial-of-service messages are sub
 
 #### misattribution
 
-The interaction protocols where the sideos DIDs are used are protected on multiple layers against misattribution and account-take-over. On an identity layer SSI ensures the authenticity of datagrams, whereas the interaction layer, e.g. within a mobile phone's environment or on cloud agents acting on behalf of a user are subject of the environmental security layer.
+The interaction protocols processing sideos DIDs are protected on multiple layers against misattribution and account-take-over. On an identity layer SSI ensures the authenticity of datagrams, whereas the interaction layer, e.g. within a mobile phone's environment or on cloud agents acting on behalf of a user are subject of the environmental security layer.
 
 #### correlation
 
