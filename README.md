@@ -40,13 +40,13 @@ did                | "did:" method-name ":" method-specific-id
 method-name        | "sideos"
 method-specific-id | [ version ":" ] 44\*44base58-char
 version            | v 3\*3DIGIT
-base58-char        | "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"
-				   | "A" / "B" / "C" / "D" / "E" / "F" / "G" / "H" / "J"
-				   | "K" / "L" / "M" / "N" / "P" / "Q" / "R" / "S" / "T"
-				   | "U" / "V" / "W" / "X" / "Y" / "Z"
-				   | "a" / "b" / "c" / "d" / "e" / "f" / "g" / "h" / "i"
-				   | "j" / "k" / "m" / "n" / "o" / "p" / "q" / "r" / "s"
-				   | "t" / "u" / "v" / "w" / "x" / "y" / "z"
+base58-char        | "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"\
+				   "A" / "B" / "C" / "D" / "E" / "F" / "G" / "H" / "J"\
+				   "K" / "L" / "M" / "N" / "P" / "Q" / "R" / "S" / "T"\
+				   "U" / "V" / "W" / "X" / "Y" / "Z"\
+				   "a" / "b" / "c" / "d" / "e" / "f" / "g" / "h" / "i"\
+				   "j" / "k" / "m" / "n" / "o" / "p" / "q" / "r" / "s"\
+				   "t" / "u" / "v" / "w" / "x" / "y" / "z"
 v                  | "v"
 
 ### DID Creation
