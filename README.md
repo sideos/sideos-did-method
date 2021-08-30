@@ -1,5 +1,5 @@
 # sideos DID Method Specification
-v0.1, Marcus Nasarek, sideos GmbH
+v0.2, Marcus Nasarek, sideos GmbH
 
 ## Introduction
 
@@ -32,14 +32,19 @@ sideos DIDs are identifiable by `did:sideos` method-name and conform to the [Gen
 
 ### Syntax
 
-Using the following ABNF rules for definition:
+Using the following ABNF rules for the definition:
 
 did                = "did:" method-name ":" method-specific-id\
 method-name        = "sideos"\
-method-specific-id = [ version ":" ] 36\*36base58-char\
-version            = v 3\*3(lower-char / DIGIT)\
-base58-char        = ALPHA / DIGIT ; A-Z / a-z / 0-9\
-lower-char         = %x61-7A  ; a-z\
+method-specific-id = [ version ":" ] 44\*44base58-char\
+version            = v 3\*3DIGIT\
+base58-char        = "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"\
+					 "A" / "B" / "C" / "D" / "E" / "F" / "G" / "H" / "J"\
+					 "K" / "L" / "M" / "N" / "P" / "Q" / "R" / "S" / "T"\
+					 "U" / "V" / "W" / "X" / "Y" / "Z"\
+					 "a" / "b" / "c" / "d" / "e" / "f" / "g" / "h" / "i"\
+					 "j" / "k" / "m" / "n" / "o" / "p" / "q" / "r" / "s"\
+					 "t" / "u" / "v" / "w" / "x" / "y" / "z"\
 v                  = "v"
 
 ### DID Creation
@@ -47,9 +52,14 @@ v                  = "v"
 The method-specific-id component is created as the following:
 
 1. generate 256 random bits 
-2. create a key pair from the secp256k1 elliptic curve
-4. BLAKE2 hash of the public key from the SPKI structure in a DER format with a length of 256 bits
-3. base58 encode the hash
+2. create a key pair from the P-256 elliptic curve (secp256r1)
+4. create a SHA-256 hash of the public key in a DER format with a length of 256 bits
+5. base58 encode the hash 
+
+
+Example:
+did:sideos:v001:7VGxVw7FoxSPfrSsLv1cRT2BsUNfsjDh74gBH6v79tkV
+
 
 The method-specific-id is used to create the DID following the syntax above. 
 
