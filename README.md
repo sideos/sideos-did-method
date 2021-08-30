@@ -1,5 +1,5 @@
 # sideos DID Method Specification
-v0.3, Marcus Nasarek, sideos GmbH
+v1.0, Marcus Nasarek, sideos GmbH
 
 ## Introduction
 
@@ -171,3 +171,7 @@ Cryptographic weaknesses may occur if new technologies are able to break through
 DID documents may be tempered with if the storage of the DID document has certain vulnerabilities with respect to the access permissions or integrity protection. It is part of the defense strategy to protect DID Document on the storage and transmission layer. 
 
 If the Identity Holder loses control over the secret keys there may be unauthorized changes to the DID Document via the UPDATE operation or a key revocation via the DEACTIVATION operation is not possible in the case the keys are lost or destroyed. 
+
+# Contact
+
+Use the github.com functionalities to contact and request changes: https://github.com/sideos/sideos-did-method
