@@ -3,11 +3,11 @@ v0.2, Marcus Nasarek, sideos GmbH
 
 ## Introduction
 
-sideos is a service middleware providing SSI services to manage DIDs and Verifiable Credentials. The goal is to ensure interoperability between multiple SSI technologies and improve the privacy and efficiency of SSI protocols. 
+sideos is providing middleware SSI services to manage DIDs and Verifiable Credentials. The goal is to ensure interoperability between multiple SSI technologies and improve the privacy and efficiency of SSI protocols. 
 
 sideos supports private and public DIDs depending on the privacy requirements of a specific use case. For a private DID we are using the `did:key` method which is described [here](https://w3c-ccg.github.io/did-method-key/). 
 
-For the public DIDs we are using our `did:sideos` method described in the sections below.
+For public DIDs we are using our `did:sideos` method described in the sections below.
 
 ### Why a sideos DID method?
 
@@ -34,18 +34,20 @@ sideos DIDs are identifiable by `did:sideos` method-name and conform to the [Gen
 
 Using the following ABNF rules for the definition:
 
-did                = "did:" method-name ":" method-specific-id\
-method-name        = "sideos"\
-method-specific-id = [ version ":" ] 44\*44base58-char\
-version            = v 3\*3DIGIT\
-base58-char        = "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"\
-					 "A" / "B" / "C" / "D" / "E" / "F" / "G" / "H" / "J"\
-					 "K" / "L" / "M" / "N" / "P" / "Q" / "R" / "S" / "T"\
-					 "U" / "V" / "W" / "X" / "Y" / "Z"\
-					 "a" / "b" / "c" / "d" / "e" / "f" / "g" / "h" / "i"\
-					 "j" / "k" / "m" / "n" / "o" / "p" / "q" / "r" / "s"\
-					 "t" / "u" / "v" / "w" / "x" / "y" / "z"\
-v                  = "v"
+element            | specification
+------------------ | --------------
+did                | "did:" method-name ":" method-specific-id
+method-name        | "sideos"
+method-specific-id | [ version ":" ] 44\*44base58-char
+version            | v 3\*3DIGIT
+base58-char        | "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"
+				   | "A" / "B" / "C" / "D" / "E" / "F" / "G" / "H" / "J"
+				   | "K" / "L" / "M" / "N" / "P" / "Q" / "R" / "S" / "T"
+				   | "U" / "V" / "W" / "X" / "Y" / "Z"
+				   | "a" / "b" / "c" / "d" / "e" / "f" / "g" / "h" / "i"
+				   | "j" / "k" / "m" / "n" / "o" / "p" / "q" / "r" / "s"
+				   | "t" / "u" / "v" / "w" / "x" / "y" / "z"
+v                  | "v"
 
 ### DID Creation
 
@@ -54,20 +56,16 @@ The method-specific-id component is created as the following:
 1. generate 256 random bits 
 2. create a key pair from the P-256 elliptic curve (secp256r1)
 4. create a SHA-256 hash of the public key in a DER format with a length of 256 bits
-5. base58 encode the hash 
+5. base58 encode the hash  
 
+The DID created is globally unique. 
 
 Example:
 did:sideos:v001:7VGxVw7FoxSPfrSsLv1cRT2BsUNfsjDh74gBH6v79tkV
 
-
-The method-specific-id is used to create the DID following the syntax above. 
-
-The DID created is globally unique. 
-
 ### DID Documents
 
-sideos DID documents follow the [DID Core Specification](https://www.w3.org/TR/did-core/#abstract) utlizing the JSON-LD format. 
+sideos DID documents follow the [DID Core Specification](https://www.w3.org/TR/did-core/#abstract) utilizing the JSON-LD format. 
 
 ## CRUD Operations
 
