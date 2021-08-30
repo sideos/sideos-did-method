@@ -32,7 +32,7 @@ sideos DIDs are identifiable by `did:sideos` method-name and conform to the [Gen
 
 ### Syntax
 
-Using the ABNF rules for definition:
+Using the following ABNF rules for definition:
 
 did                = "did:" method-name ":" method-specific-id\
 method-name        = "sideos"\
