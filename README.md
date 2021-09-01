@@ -15,14 +15,14 @@ To support basic business requirements appropriately there need to be certain el
 * cross-chain support: businesses may have certain constraints preferring to us a specific ledger. To consider also legal, regulatory and business requirements, the sideos DID method is ledger-agnostic
 * bidirectional trust: The interaction between two entities may require certain conditions to set up constraints for the interaction. Mutual establishment of trust may be necessary before the exchange of data is allowed. 
 * multi-layer privacy: Privacy comes in multiple flavors and in a business environment it needs to consider regional requirements to decide what conditions need to be applied before certain data may be requested or provided.     
-* responsiveness: The speed of transactions is crucial for businesses and user experience. As many blockchain-related transactions may be unbearably slow for certain ledgers. DID services need to responde and finalize transactions as fast as possible. 
-* business-readiness: Interoperability ensures reachability which is among the most crucial business requirements. But even more important is the support of business workflows, the user experience, legal compliance and the predictability of interactions. 
+* responsiveness: The speed of transactions is crucial for businesses and user experience as many blockchain-related transactions may be unbearably slow for certain ledgers. DID services need to responde and finalize transactions as fast as possible. 
+* business-readiness: Interoperability ensures reachability which is among the most crucial business requirements. Even more important is the support of business workflows, the user experience, legal compliance and the predictability of interactions. 
 
-To support the business layer accordingly we introduced our sideos DID method making SSI features easier to integrate into business applications and handling DIDs as efficiently as possible from a user perspective.     
+To support the business layer accordingly we introduced our sideos DID method ensuring an easier integration of SSI features into business applications, as well as handling DIDs as efficiently as possible from a user perspective.     
 
 ## Overview
 
-DIDs need to be resolvable und following the standards it is required to implement [DID Resolution](https://www.w3.org/TR/did-core/#resolution). 
+DIDs need to be resolvable, and following the standards, it is required to implement the [DID Resolution](https://www.w3.org/TR/did-core/#resolution). 
 
 ## sideos Specifications
 
@@ -97,7 +97,7 @@ There are 2 options for DID Document updates. Option 1 is the offline update and
 
 There are 2 options for the deactivation. 
 
-Option 1 is to perform an update with an status indicating the DID Document and the respective DID are invalid from a certain point in time on. This is applied for immutable ledgers, e.g. blockchain ledgers.
+Option 1 is to perform an update with a status indicating the DID Document and the respective DID are invalid from a certain point in time on. This is applied for immutable ledgers, e.g. blockchain ledgers.
 
 Option 2 is to perform a deletion event and delete or deactivate access to the data record on the ledger, e.g. dropping decryption keys or deleting the record. This is applied to mutable ledgers or ledgers with encrypted records, which cannot be read without the respective decryption key. 
 
@@ -116,7 +116,7 @@ The keys are generated within the premise of the Identity Holder or on its behal
 
 ### Key Revocation
 
-If the private key of a DID is compromised or becomes or invalid, DIDs can be identified when created and registered on a public ledger. The DEACTIVATE operation applies. Only the Identity Holder can grant permissions to perform an DEACTIVATE operation. 
+If the private key of a DID is compromised or becomes invalid, DIDs can be identified when created and registered on a public ledger. The DEACTIVATE operation applies. Only the Identity Holder can grant permissions to perform a DEACTIVATE operation. 
 
 ## Privacy and Security Considerations
 
@@ -132,7 +132,7 @@ The Verifiable Credentials managed by the Identity Holder of a public DID are no
 
 #### stored data compromise
 
-Data stored on a public ledger may be compromised. sideos supports only ledgers with inherent integrity protection, e.g. blockchains or permissioned distributed ledgers. The integrity protection may fail, so we are utilizing open source ledgers which are supported actively by the big community.
+Data stored on a public ledger may be compromised. sideos supports only ledgers with inherent integrity protection, e.g. blockchains or permissioned distributed ledgers. The integrity protection may fail, so we are utilizing open source ledgers which are supported actively by a big community.
 
 #### unsolicited traffic
 
@@ -140,15 +140,15 @@ The protection against unsolicited traffic or denial-of-service messages are sub
 
 #### misattribution
 
-The interaction protocols processing sideos DIDs are protected on multiple layers against misattribution and account-take-over. On an identity layer SSI ensures the authenticity of datagrams, whereas the interaction layer, e.g. within a mobile phone's environment or on cloud agents acting on behalf of a user are subject of the environmental security layer.
+The interaction protocols processing sideos DIDs are protected on multiple layers against misattribution and account-take-over. On an identity layer SSI ensures the authenticity of datagrams, whereas the interaction layer, e.g. within a mobile phone's environment or on cloud agents acting on behalf of a user are a focus point of the environmental security layer.
 
 #### correlation
 
-The correlation of data captured during the CRUD operations of a sideos DID transaction or during related SSI-based interactions may lead to insights affecting the privacy. Although the communication channel is encrypted the parties involved in the communication may try to correlate data elements to other information available. The correlation is addressed in the way a sideos presentation is created by processing only data relevant in an interaction. No additional data is involved, not in plain nor encrypted or hashed.  
+The correlation of data captured during the CRUD operations of a sideos DID transaction or during related SSI-based interactions may lead to insights affecting the privacy. Although the communication channel is encrypted, the communication parties involved may try to correlate data elements to other information available. The correlation is addressed in the way a sideos presentation is created by processing only data relevant in an interaction. No additional data is involved, not in plain nor encrypted or hashed format.  
 
 #### identification
 
-The topic identification as addressed in the section 5.2.2 of the [RFC6973](https://datatracker.ietf.org/doc/html/rfc6973#section-5.2.2) is what SSI is about. The inherent characteristics of the technology ensure that the identity of interacting individuals can be validated. The natural person or physical object to be identified by SSI credentials have to be linked on the layer above SSI and out of scope of this document.
+The topic of identification as addressed in the section 5.2.2 of the [RFC6973](https://datatracker.ietf.org/doc/html/rfc6973#section-5.2.2) is what SSI is about. The inherent characteristics of the technology ensure that the identity of interacting individuals can be validated. The natural person or physical object to be identified by SSI credentials have to be linked to the layer above SSI and are out of scope for this document.
 
 #### secondary use
 
@@ -156,7 +156,7 @@ The secondary use of the information contained in a Verifiable Credential provid
 
 #### disclosure
 
-The structure, naming convention and number of data fields reveal information that allows other parties receiving DIDs and Verifiable Credentials to make certain conclusions. The sideos method creates presentations in a way that it implements the need-to-know principle. Only data elements which are required for the respective purpose are captured for the specific identity presentation. 
+The structure, naming convention, and number of data fields reveal information that allows other parties receiving DIDs and Verifiable Credentials to make certain conclusions. The sideos method creates presentations in a way that implements the need-to-know principles. Only data elements which are required for the respective purpose are captured for the specific identity presentation. 
 
 #### exclusion
 
@@ -164,13 +164,13 @@ The nature of SSI enforces the involvement of the Identity Holder into the handl
 
 ### Security
 
-Security requires multiple layers of defense. The software implementation of the resolver incorporates cryptographic libraries and security features provided by many vendors, mostly supervised by the open source community. In most of the cases the community detects vulnerabilities quickly and provides fixes to security flaws. Keeping up with the maturity process and applying a secure software lifecycle is crucial for the resolver but also for the connecting services. 
+Security requires multiple layers of defense. The software implementation of the resolver incorporates cryptographic libraries and security features provided by many vendors, mostly supervised by the open source community. In most cases, the community detects vulnerabilities quickly and provides fixes to security flaws. Keeping up with the maturity process and applying a secure software lifecycle is crucial for the resolver but also for the connecting services. 
 
 Cryptographic weaknesses may occur if new technologies are able to break through the protection layer or conceptual shortcuts in the cryptographic algorithms are discovered. The sideos DID method is using a versioning system to be able to migrate to updates of the underlying cryptographic primitives. 
 
 DID documents may be tempered with if the storage of the DID document has certain vulnerabilities with respect to the access permissions or integrity protection. It is part of the defense strategy to protect DID Document on the storage and transmission layer. 
 
-If the Identity Holder loses control over the secret keys there may be unauthorized changes to the DID Document via the UPDATE operation or a key revocation via the DEACTIVATION operation is not possible in the case the keys are lost or destroyed. 
+If the Identity Holder loses control over the secret keys there may be unauthorized changes to the DID Document via the UPDATE operation. The Identity Holder may not be able tp perform a key revocation via the DEACTIVATION operation in the case the keys are lost or destroyed. 
 
 # Contact
 
